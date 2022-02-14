@@ -6,34 +6,57 @@ public class Player : MonoBehaviour
 
 {
     [SerializeField] private float speed;
+
+    [SerializeField] float leftBorder;
+    [SerializeField] float rightBorder;
+    [SerializeField] float bottomBorder;
+
     private bool isMoving;
+    private Vector3 currentpos;
     private Vector3 origPos;
     private Vector3 targetPos;
     private float timeToMove = 0.2f;
+    
 
 
     void Start()
     {
-        
+       
     }
 
   
     void Update()
     {
+        currentpos = transform.position;
+
         //Movement
         if (Input.GetKey("up") && !isMoving)
             StartCoroutine(MovePlayer(Vector3.up));
 
         if (Input.GetKey("left") && !isMoving)
-            StartCoroutine(MovePlayer(Vector3.left));
+            if (currentpos.x > leftBorder)
+            {
+                StartCoroutine(MovePlayer(Vector3.left));
+            }            
 
         if (Input.GetKey("down") && !isMoving)
-            StartCoroutine(MovePlayer(Vector3.down));
+            if(currentpos.y > bottomBorder)
+            {
+                StartCoroutine(MovePlayer(Vector3.down));
+            }            
 
         if (Input.GetKey("right") && !isMoving)
-            StartCoroutine(MovePlayer(Vector3.right));
+            if(currentpos.x < rightBorder)
+            {
+                StartCoroutine(MovePlayer(Vector3.right));
+            }
+            
 
+    }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        
     }
 
 
