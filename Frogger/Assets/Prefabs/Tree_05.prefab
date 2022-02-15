@@ -69,7 +69,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 18
   m_Sprite: {fileID: 21300000, guid: abe69c0a53042f840a976ad7e741d120, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7949607931428671696}
   - component: {fileID: 2487875982672865854}
-  - component: {fileID: 1957641476892756648}
+  - component: {fileID: 6969445553338769688}
   m_Layer: 0
   m_Name: Tree_05
   m_TagString: Untagged
@@ -140,7 +140,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 1}
   m_EdgeRadius: 0
---- !u!50 &1957641476892756648
+--- !u!50 &6969445553338769688
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0

@@ -69,7 +69,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 20
   m_Sprite: {fileID: 21300000, guid: 1ed9ba05136f04601a60ca02cfee2fd7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -91,7 +91,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6947035245559458993}
   - component: {fileID: 83667672110979273}
-  - component: {fileID: 6127173914954949378}
+  - component: {fileID: 2302281957011161059}
+  - component: {fileID: 1993635670560911179}
   m_Layer: 0
   m_Name: Car_White
   m_TagString: Untagged
@@ -140,7 +141,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.1542761, y: 1}
   m_EdgeRadius: 0
---- !u!50 &6127173914954949378
+--- !u!114 &2302281957011161059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5002998232301324118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4033c724305a5441a61b9b607cb2e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  lefMovement: 0
+--- !u!50 &1993635670560911179
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0

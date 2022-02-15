@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 182956364360063293}
   - component: {fileID: 2037505904711136399}
-  - component: {fileID: 8303276142745684739}
+  - component: {fileID: 1773731257}
+  - component: {fileID: 7433764631565362781}
   m_Layer: 0
   m_Name: Tree_01
   m_TagString: Untagged
@@ -55,11 +56,25 @@ BoxCollider2D:
     adaptiveTilingThreshold: 0
     drawMode: 0
     adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_AutoTiling: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 1}
   m_EdgeRadius: 0
---- !u!50 &8303276142745684739
+--- !u!114 &1773731257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6704270942161497834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69dae53570569f541855d3a3b4bc1254, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  lefMovement: 0
+--- !u!50 &7433764631565362781
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -149,7 +164,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 18
   m_Sprite: {fileID: 21300000, guid: 7f040f236b39c1f4da1bd4be0922aed6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
