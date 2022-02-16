@@ -5,35 +5,34 @@ using UnityEngine;
 public class Car : MonoBehaviour
 {
     [SerializeField] private float speed;
-    [SerializeField] private bool lefMovement;
+    [SerializeField] private bool right;
     Vector3 scale;
-    
+
 
     protected virtual void Start()
-    {        
-        if (lefMovement)
+    {
+        if (right)
         {
-            scale = transform.localScale;
-            transform.localScale = new Vector3(-scale.x, scale.y, scale.z);
+            scale = GetComponentInChildren<Transform>().localScale;
+            GetComponentInChildren<Transform>().localScale = new Vector3(-scale.x, scale.y, scale.z);
         }
-        
     }
 
     protected virtual void Update()
     {
-        if (lefMovement)
+        if (right)
         {
             
-            transform.Translate(Vector3.left * Time.deltaTime * speed);
+            transform.Translate(Vector3.right * Time.deltaTime * speed);
         }
         else
         {
-            transform.Translate(Vector3.right * Time.deltaTime * speed);
+            transform.Translate(Vector3.left * Time.deltaTime * speed);
         }
         
     }
 
-    protected virtual private void OnCollisionEnter2D(Collision2D collision)
+    protected virtual private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "Wall")
         {

@@ -14,10 +14,6 @@ public class Spawner : MonoBehaviour
         InvokeRepeating("Spawn", 0f, timeToSpawn);
     }
 
-    void Update()
-    {
-
-    }
 
     private void Spawn()
     {

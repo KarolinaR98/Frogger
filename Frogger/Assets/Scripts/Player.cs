@@ -54,11 +54,38 @@ public class Player : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter(Collision collision)
     {
         
+        if(collision.gameObject.tag == "Tree")
+        {
+            transform.parent = collision.transform;
+        }
+
+        if(collision.gameObject.tag == "Car")
+        {
+            Destroy(gameObject);
+        }
+
+        if (collision.gameObject.tag == "Water")
+        {
+            Debug.Log("Water");
+        }
+
+        if (collision.gameObject.tag == "Grass")
+        {
+
+        }
+
     }
 
+    private void OnCollisionExit(Collision collision)
+    {
+        if(collision.gameObject.tag == "Tree")
+        {
+            transform.parent = null;
+        }
+    }
 
 
     private IEnumerator MovePlayer(Vector3 direction)
