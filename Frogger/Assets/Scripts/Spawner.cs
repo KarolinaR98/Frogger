@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject prefabToSpawn;
+    [SerializeField] private List<GameObject> prefabsToSpawn;
     [SerializeField] private float timeToSpawn;
     [SerializeField] private float yPosition;
+    [SerializeField] private float zPosition;
     Vector3 spawnerPosition;
     void Start()
     {
@@ -17,7 +18,7 @@ public class Spawner : MonoBehaviour
 
     private void Spawn()
     {
-        Instantiate(prefabToSpawn, new Vector3(spawnerPosition.x, yPosition, 0) , transform.rotation);
+        Instantiate(prefabsToSpawn[Random.Range(0, prefabsToSpawn.Count)], new Vector3(spawnerPosition.x, yPosition, zPosition) , transform.rotation);
     }
 
     

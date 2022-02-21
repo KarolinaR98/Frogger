@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 161931134487024992}
   - component: {fileID: 4280844867773997369}
   m_Layer: 0
-  m_Name: Car_Black
+  m_Name: Car_Blue
   m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  lefMovement: 1
+  right: 0
 --- !u!65 &161931134487024992
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -147,7 +147,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 20
-  m_Sprite: {fileID: 21300000, guid: 8e9bf285a1c1d4367a66b78884ae689d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bc300dc9b7d6f4706ae07ffa4ad7d90f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

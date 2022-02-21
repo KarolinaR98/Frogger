@@ -5,8 +5,6 @@ using UnityEngine;
 public class Player : MonoBehaviour
 
 {
-    [SerializeField] private float speed;
-
     [SerializeField] float leftBorder;
     [SerializeField] float rightBorder;
     [SerializeField] float bottomBorder;
@@ -15,13 +13,20 @@ public class Player : MonoBehaviour
     private Vector3 currentpos;
     private Vector3 origPos;
     private Vector3 targetPos;
-    private float timeToMove = 0.2f;
+    private float timeToMove = 0;
+
+    private float raycastDistance = 5;
+    private bool isDone = false;
+
+    private int numOfLives;
+    private Vector3 setPlayer = new Vector3(0f,-2.5f, 0f);
+    [SerializeField] GameObject playerPrefab;
     
 
 
     void Start()
     {
-       
+        gameObject.transform.position = setPlayer;
     }
 
   
@@ -29,61 +34,67 @@ public class Player : MonoBehaviour
     {
         currentpos = transform.position;
 
-        //Movement
-        if (Input.GetKey("up") && !isMoving)
+        
+        if (Input.GetKeyDown("up") && !isMoving)
             StartCoroutine(MovePlayer(Vector3.up));
 
-        if (Input.GetKey("left") && !isMoving)
+        if (Input.GetKeyDown("left") && !isMoving)
             if (currentpos.x > leftBorder)
             {
                 StartCoroutine(MovePlayer(Vector3.left));
             }            
 
-        if (Input.GetKey("down") && !isMoving)
+        if (Input.GetKeyDown("down") && !isMoving)
             if(currentpos.y > bottomBorder)
             {
                 StartCoroutine(MovePlayer(Vector3.down));
             }            
 
-        if (Input.GetKey("right") && !isMoving)
+        if (Input.GetKeyDown("right") && !isMoving)
             if(currentpos.x < rightBorder)
             {
                 StartCoroutine(MovePlayer(Vector3.right));
             }
-            
+
+        Ray ray = new Ray(transform.position, new Vector3(0, 0, 1));
+        RaycastHit hit;
+        Debug.DrawRay(transform.position, new Vector3(0,0,1) * raycastDistance, Color.red);
+        if(Physics.Raycast(ray, out hit, Mathf.Infinity))
+        {
+           if(hit.collider.tag == "Water" && !isDone)
+            {
+                CheckIfEndOfGame();                
+            }
+
+           if(hit.collider.tag == "Tree")
+            {
+                transform.parent = hit.collider.transform;
+            }
+        }
+        else if (isDone)
+        {
+            isDone = false;
+        }
+        else if (transform.parent != null)
+        {
+            transform.parent = null;
+        }
+
+        CheckBorders(currentpos);
 
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        
-        if(collision.gameObject.tag == "Tree")
-        {
-            transform.parent = collision.transform;
-        }
-
         if(collision.gameObject.tag == "Car")
         {
-            Destroy(gameObject);
+            CheckIfEndOfGame();
         }
 
-        if (collision.gameObject.tag == "Water")
+        if(collision.gameObject.tag == "Grass")
         {
-            Debug.Log("Water");
-        }
-
-        if (collision.gameObject.tag == "Grass")
-        {
-
-        }
-
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if(collision.gameObject.tag == "Tree")
-        {
-            transform.parent = null;
+            SpawnNewPlayer();
+            Destroy(GetComponent<Player>());
         }
     }
 
@@ -107,4 +118,32 @@ public class Player : MonoBehaviour
 
         isMoving = false;
     } 
+
+    private void CheckIfEndOfGame()
+    {
+        numOfLives--;
+        if(numOfLives == -3)
+        {
+            Destroy(gameObject);
+            Debug.Log("Koniec");
+        }
+        else
+        {
+            gameObject.transform.position = setPlayer;
+        }
+    }
+
+    private void CheckBorders(Vector3 currentPos_)
+    {
+        if(currentPos_.x > rightBorder || currentPos_.x < leftBorder)
+        {
+            CheckIfEndOfGame();
+        }
+    }
+
+    private void SpawnNewPlayer()
+    {
+        Instantiate(playerPrefab, setPlayer, transform.rotation);
+    }
+  
 }
