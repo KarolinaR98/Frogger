@@ -21,12 +21,16 @@ public class Player : MonoBehaviour
     private int numOfLives;
     private Vector3 setPlayer = new Vector3(0f,-2.5f, 0f);
     [SerializeField] GameObject playerPrefab;
-    
+    private GameObject canvas;
+
+    private int attemptsStreet;
+    private int attemotsRiver;
 
 
     void Start()
     {
         gameObject.transform.position = setPlayer;
+        canvas = GameObject.Find("Canvas");
     }
 
   
@@ -81,7 +85,7 @@ public class Player : MonoBehaviour
         }
 
         CheckBorders(currentpos);
-
+        DestroyGameObject();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -93,8 +97,8 @@ public class Player : MonoBehaviour
 
         if(collision.gameObject.tag == "Grass")
         {
-            SpawnNewPlayer();
-            Destroy(GetComponent<Player>());
+            GameManager.points += canvas.GetComponent<Timer>().TimeStamp();
+            CheckIfWin();
         }
     }
 
@@ -122,10 +126,11 @@ public class Player : MonoBehaviour
     private void CheckIfEndOfGame()
     {
         numOfLives--;
+        canvas.BroadcastMessage("DeleteLifePoint", SendMessageOptions.DontRequireReceiver);
         if(numOfLives == -3)
         {
-            Destroy(gameObject);
-            Debug.Log("Koniec");
+            GameManager.playGame = false;
+            GameManager.win = false;
         }
         else
         {
@@ -145,5 +150,27 @@ public class Player : MonoBehaviour
     {
         Instantiate(playerPrefab, setPlayer, transform.rotation);
     }
+
+    private void CheckIfWin()
+    {
+        GameManager.frogOnGrass++;    
+        if (GameManager.frogOnGrass == 3)
+        {
+            GameManager.win = true;
+            GameManager.playGame = false;
+        }
+        else
+        {
+            SpawnNewPlayer();
+            Destroy(GetComponent<Player>());
+        }
+    }
   
+    private void DestroyGameObject()
+    {
+        if (!GameManager.playGame)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

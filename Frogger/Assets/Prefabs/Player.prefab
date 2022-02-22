@@ -50,6 +50,7 @@ MonoBehaviour:
   rightBorder: 10
   bottomBorder: -2.5
   playerPrefab: {fileID: 4107551755658280650}
+  canvas: {fileID: 4550964532697476548, guid: aa69618a7eb03554db94eb6a6460279a, type: 3}
 --- !u!65 &6470357861705975102
 BoxCollider:
   m_ObjectHideFlags: 0

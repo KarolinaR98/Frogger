@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 3031027461971530382}
   - component: {fileID: 4878093510181256891}
   m_Layer: 0
-  m_Name: Tree_06
+  m_Name: Tree_02_Diving
   m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -144,7 +144,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.8, y: 1, z: 0}
+  m_Size: {x: 2, y: 1, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4878093510181256891
 Rigidbody:

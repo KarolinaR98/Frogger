@@ -15,11 +15,17 @@ public class Spawner : MonoBehaviour
         InvokeRepeating("Spawn", 0f, timeToSpawn);
     }
 
-
     private void Spawn()
-    {
-        Instantiate(prefabsToSpawn[Random.Range(0, prefabsToSpawn.Count)], new Vector3(spawnerPosition.x, yPosition, zPosition) , transform.rotation);
-    }
+     {
+        Instantiate(prefabsToSpawn[Random.Range(0, prefabsToSpawn.Count)], new Vector3(spawnerPosition.x, yPosition, zPosition),
+            transform.rotation);
+        if (!GameManager.playGame)
+        {
+            CancelInvoke();
+        }
+     }
+
+   
 
     
 }
