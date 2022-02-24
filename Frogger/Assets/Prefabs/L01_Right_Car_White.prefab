@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 1489161226844588553}
   - component: {fileID: 7815796183703942268}
   m_Layer: 0
-  m_Name: Car_White
+  m_Name: L01_Right_Car_White
   m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,8 +127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4033c724305a5441a61b9b607cb2e75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  right: 0
+  speed: 2
+  right: 1
 --- !u!65 &1489161226844588553
 BoxCollider:
   m_ObjectHideFlags: 0

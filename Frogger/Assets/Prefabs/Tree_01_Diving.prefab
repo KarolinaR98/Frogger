@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7339932761221604312}
   - component: {fileID: 8298045364979526846}
   m_Layer: 0
-  m_Name: Tree_01
+  m_Name: Tree_01_Diving
   m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

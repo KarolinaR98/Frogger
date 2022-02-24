@@ -5,11 +5,12 @@ using TMPro;
 
 public class Points : MonoBehaviour
 {
-    [SerializeField] TMP_Text pointsText;
+    [SerializeField] private TMP_Text pointsText;
 
 
     void Update()
     {
         pointsText.text = ("Points : " + GameManager.points);
     }
+
 }

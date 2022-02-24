@@ -12,7 +12,7 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         spawnerPosition = transform.position;
-        InvokeRepeating("Spawn", 0f, timeToSpawn);
+        InvokeRepeating("Spawn", Random.Range(0,4), timeToSpawn);
     }
 
     private void Spawn()

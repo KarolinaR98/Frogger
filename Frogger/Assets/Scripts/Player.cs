@@ -22,15 +22,13 @@ public class Player : MonoBehaviour
     private Vector3 setPlayer = new Vector3(0f,-2.5f, 0f);
     [SerializeField] GameObject playerPrefab;
     private GameObject canvas;
+    private GameObject[] pointBorders;
 
-    private int attemptsStreet;
-    private int attemotsRiver;
-
-
-    void Start()
+     void Start()
     {
         gameObject.transform.position = setPlayer;
         canvas = GameObject.Find("Canvas");
+        pointBorders = GameObject.FindGameObjectsWithTag("Border");
     }
 
   
@@ -125,6 +123,7 @@ public class Player : MonoBehaviour
 
     private void CheckIfEndOfGame()
     {
+        ResetBorders();
         numOfLives--;
         canvas.BroadcastMessage("DeleteLifePoint", SendMessageOptions.DontRequireReceiver);
         if(numOfLives == -3)
@@ -153,6 +152,9 @@ public class Player : MonoBehaviour
 
     private void CheckIfWin()
     {
+        CheckIfBonus();
+        ResetBorders();
+        canvas.BroadcastMessage("ResetBorders", SendMessageOptions.DontRequireReceiver);
         GameManager.frogOnGrass++;    
         if (GameManager.frogOnGrass == 3)
         {
@@ -171,6 +173,22 @@ public class Player : MonoBehaviour
         if (!GameManager.playGame)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void ResetBorders()
+    {
+        foreach(GameObject pointsBorder in pointBorders)
+        {
+            pointsBorder.GetComponent<PointsBorder>().ResetPoints();
+        }
+    }
+
+    private void CheckIfBonus()
+    {
+        foreach (GameObject pointsBorder in pointBorders)
+        {
+            pointsBorder.GetComponent<PointsBorder>().UpdatePoints();
         }
     }
 }

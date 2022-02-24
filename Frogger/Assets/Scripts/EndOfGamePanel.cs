@@ -16,7 +16,7 @@ public class EndOfGamePanel : MonoBehaviour
 
             if (GameManager.win)
             {
-                endOfGameText.text = ("Wygrałeś");
+                endOfGameText.text = ("Wygrałeś!\nZdobyte punkty: " + GameManager.points);
             }
             else
             {
