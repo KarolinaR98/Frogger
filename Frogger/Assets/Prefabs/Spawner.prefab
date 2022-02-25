@@ -46,3 +46,5 @@ MonoBehaviour:
   prefabsToSpawn: []
   timeToSpawn: 2
   yPosition: 2.5
+  zPosition: 0
+  spawnPoint: {fileID: 0}

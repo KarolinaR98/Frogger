@@ -19,13 +19,14 @@ public class Player : MonoBehaviour
     private bool isDone = false;
 
     private int numOfLives;
-    private Vector3 setPlayer = new Vector3(0f,-2.5f, 0f);
+    private Vector3 setPlayer;
     [SerializeField] GameObject playerPrefab;
     private GameObject canvas;
     private GameObject[] pointBorders;
 
      void Start()
     {
+        setPlayer = new Vector3(0f, bottomBorder, 0f);
         gameObject.transform.position = setPlayer;
         canvas = GameObject.Find("Canvas");
         pointBorders = GameObject.FindGameObjectsWithTag("Border");

@@ -10,7 +10,7 @@ public class Log : Car
     [SerializeField] private float randomMaxValue;
 
     Renderer rend;
-    BoxCollider2D collider2D_;
+    BoxCollider collider_;
 
     protected override void Start()
     {
@@ -19,7 +19,7 @@ public class Log : Car
         if (canDive)
         {
             rend = GetComponentInChildren<Renderer>();
-            collider2D_ = GetComponent<BoxCollider2D>();
+            collider_ = GetComponent<BoxCollider>();
             StartCoroutine("Dive");
             
         }
@@ -40,12 +40,12 @@ public class Log : Car
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(0f, 1.5f));
+            yield return new WaitForSeconds(Random.Range(2f, 4f));
             StartCoroutine("FadeOut");
-            collider2D_.enabled = false;
+            collider_.enabled = false;
             yield return new WaitForSeconds(divingTime);
             StartCoroutine("FadeIn");
-            collider2D_.enabled = true;
+            collider_.enabled = true;
             yield return new WaitForSeconds(Random.Range(randomMinValue, randomMaxValue));
         }
            

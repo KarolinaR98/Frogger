@@ -127,12 +127,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69dae53570569f541855d3a3b4bc1254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 2
   right: 1
-  canDive: 0
-  divingTime: 0
-  randomMinValue: 0
-  randomMaxValue: 0
+  canDive: 1
+  divingTime: 4
+  randomMinValue: 4
+  randomMaxValue: 6
 --- !u!65 &3031027461971530382
 BoxCollider:
   m_ObjectHideFlags: 0

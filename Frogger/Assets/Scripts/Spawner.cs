@@ -8,11 +8,18 @@ public class Spawner : MonoBehaviour
     [SerializeField] private float timeToSpawn;
     [SerializeField] private float yPosition;
     [SerializeField] private float zPosition;
+    [SerializeField] private GameObject spawnPoint;
     Vector3 spawnerPosition;
+
+    private void Awake()
+    {
+        Instantiate(prefabsToSpawn[Random.Range(0, prefabsToSpawn.Count)], spawnPoint.transform.position,
+            spawnPoint.transform.rotation);
+    }
     void Start()
     {
         spawnerPosition = transform.position;
-        InvokeRepeating("Spawn", Random.Range(0,4), timeToSpawn);
+        InvokeRepeating("Spawn", Random.Range(0, 1.5f), timeToSpawn);
     }
 
     private void Spawn()

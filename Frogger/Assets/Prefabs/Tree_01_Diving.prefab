@@ -47,11 +47,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  right: 0
-  canDive: 0
-  divingTime: 0
-  randomMinValue: 0
-  randomMaxValue: 0
+  right: 1
+  canDive: 1
+  divingTime: 3
+  randomMinValue: 4
+  randomMaxValue: 7
 --- !u!65 &7339932761221604312
 BoxCollider:
   m_ObjectHideFlags: 0
