@@ -17,10 +17,12 @@ public class EndOfGamePanel : MonoBehaviour
             if (GameManager.win)
             {
                 endOfGameText.text = ("Wygrałeś!\nZdobyte punkty: " + GameManager.points);
+                GetComponent<LevelsManager>().StartCoroutine("LoadNextLevel");
             }
             else
             {
                 endOfGameText.text = ("GAME OVER!");
+                GetComponent<LevelsManager>().StartCoroutine("PlayAgain");
             }
         }
     }
