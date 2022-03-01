@@ -8,13 +8,16 @@ public class Spawner : MonoBehaviour
     [SerializeField] private float timeToSpawn;
     [SerializeField] private float yPosition;
     [SerializeField] private float zPosition;
-    [SerializeField] private GameObject spawnPoint;
+    [SerializeField] private List<GameObject> spawnPoints;
     Vector3 spawnerPosition;
 
     private void Awake()
     {
-        Instantiate(prefabsToSpawn[Random.Range(0, prefabsToSpawn.Count)], spawnPoint.transform.position,
+        foreach (GameObject spawnPoint in spawnPoints)
+        {
+            Instantiate(prefabsToSpawn[Random.Range(0, prefabsToSpawn.Count)], spawnPoint.transform.position,
             spawnPoint.transform.rotation);
+        }        
     }
     void Start()
     {
@@ -26,7 +29,7 @@ public class Spawner : MonoBehaviour
      {
         Instantiate(prefabsToSpawn[Random.Range(0, prefabsToSpawn.Count)], new Vector3(spawnerPosition.x, yPosition, zPosition),
             transform.rotation);
-        if (!GameManager.playGame)
+        if (GameManager.endOfGame)
         {
             CancelInvoke();
         }

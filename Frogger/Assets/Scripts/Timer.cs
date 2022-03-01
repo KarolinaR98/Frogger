@@ -18,7 +18,7 @@ public class Timer : MonoBehaviour
    
     void Update()
     {
-        if (isCounting && currentTime >= 0)
+        if (GameManager.playGame && isCounting && currentTime >= 0)
         {
             currentTime -= 1 * Time.deltaTime;
             textComponent.text = ("TIME : " + (int)currentTime + " S");
@@ -28,9 +28,10 @@ public class Timer : MonoBehaviour
         {
             GameManager.win = false;
             GameManager.playGame = false;
+            GameManager.endOfGame = true;
         }
 
-        if (!GameManager.playGame)
+        if (GameManager.endOfGame)
         {
             isCounting = false;
             textComponent.text = ("");

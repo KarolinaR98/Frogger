@@ -6,6 +6,11 @@ public class PointsBorder : MonoBehaviour
 {
     private int triggerCounter;
 
+    void Update()
+    {
+        Debug.Log(triggerCounter);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Player")

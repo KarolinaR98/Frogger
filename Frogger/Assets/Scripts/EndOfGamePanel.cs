@@ -10,7 +10,7 @@ public class EndOfGamePanel : MonoBehaviour
 
     private void Update()
     {
-        if (!GameManager.playGame)
+        if (GameManager.endOfGame)
         {
             endOfGamePanel.SetActive(true);
 

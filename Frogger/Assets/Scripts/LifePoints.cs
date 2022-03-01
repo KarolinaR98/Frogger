@@ -9,7 +9,7 @@ public class LifePoints : MonoBehaviour
 
     private void Update()
     {
-        if (!GameManager.playGame)
+        if (GameManager.endOfGame)
         {
             HideLifePoints();
         }

@@ -5,9 +5,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 
 {
-    [SerializeField] float leftBorder;
-    [SerializeField] float rightBorder;
-    [SerializeField] float bottomBorder;
+    public float leftBorder;
+    public float rightBorder;
+    public float bottomBorder;
 
     private bool isMoving;
     private Vector3 currentpos;
@@ -35,56 +35,60 @@ public class Player : MonoBehaviour
   
     void Update()
     {
-        currentpos = transform.position;
+        if (GameManager.playGame)
+        {
+            currentpos = transform.position;
 
+
+            if (Input.GetKeyDown("up") && !isMoving)
+                StartCoroutine(MovePlayer(Vector3.up));
+
+            if (Input.GetKeyDown("left") && !isMoving)
+                if (currentpos.x > leftBorder)
+                {
+                    StartCoroutine(MovePlayer(Vector3.left));
+                }
+
+            if (Input.GetKeyDown("down") && !isMoving)
+                if (currentpos.y > bottomBorder)
+                {
+                    StartCoroutine(MovePlayer(Vector3.down));
+                }
+
+            if (Input.GetKeyDown("right") && !isMoving)
+                if (currentpos.x < rightBorder)
+                {
+                    StartCoroutine(MovePlayer(Vector3.right));
+                }
+
+            Ray ray = new Ray(transform.position, new Vector3(0, 0, 1));
+            RaycastHit hit;
+            Debug.DrawRay(transform.position, new Vector3(0, 0, 1) * raycastDistance, Color.red);
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            {
+                if (hit.collider.tag == "Water" && !isDone)
+                {
+                    CheckIfEndOfGame();
+                }
+
+                if (hit.collider.tag == "Tree")
+                {
+                    transform.parent = hit.collider.transform;
+                }
+            }
+            else if (isDone)
+            {
+                isDone = false;
+            }
+            else if (transform.parent != null)
+            {
+                transform.parent = null;
+            }
+
+            CheckBorders(currentpos);
+            DestroyGameObject();
+        }
         
-        if (Input.GetKeyDown("up") && !isMoving)
-            StartCoroutine(MovePlayer(Vector3.up));
-
-        if (Input.GetKeyDown("left") && !isMoving)
-            if (currentpos.x > leftBorder)
-            {
-                StartCoroutine(MovePlayer(Vector3.left));
-            }            
-
-        if (Input.GetKeyDown("down") && !isMoving)
-            if(currentpos.y > bottomBorder)
-            {
-                StartCoroutine(MovePlayer(Vector3.down));
-            }            
-
-        if (Input.GetKeyDown("right") && !isMoving)
-            if(currentpos.x < rightBorder)
-            {
-                StartCoroutine(MovePlayer(Vector3.right));
-            }
-
-        Ray ray = new Ray(transform.position, new Vector3(0, 0, 1));
-        RaycastHit hit;
-        Debug.DrawRay(transform.position, new Vector3(0,0,1) * raycastDistance, Color.red);
-        if(Physics.Raycast(ray, out hit, Mathf.Infinity))
-        {
-           if(hit.collider.tag == "Water" && !isDone)
-            {
-                CheckIfEndOfGame();                
-            }
-
-           if(hit.collider.tag == "Tree")
-            {
-                transform.parent = hit.collider.transform;
-            }
-        }
-        else if (isDone)
-        {
-            isDone = false;
-        }
-        else if (transform.parent != null)
-        {
-            transform.parent = null;
-        }
-
-        CheckBorders(currentpos);
-        DestroyGameObject();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -127,9 +131,10 @@ public class Player : MonoBehaviour
         ResetBorders();
         numOfLives--;
         canvas.BroadcastMessage("DeleteLifePoint", SendMessageOptions.DontRequireReceiver);
-        if(numOfLives == -3)
+        if(numOfLives <= -3)
         {
             GameManager.playGame = false;
+            GameManager.endOfGame = true;
             GameManager.win = false;
         }
         else
@@ -148,7 +153,10 @@ public class Player : MonoBehaviour
 
     private void SpawnNewPlayer()
     {
-        Instantiate(playerPrefab, setPlayer, transform.rotation);
+        GameObject player = Instantiate(playerPrefab, setPlayer, transform.rotation);
+        player.GetComponent<Player>().leftBorder = leftBorder;
+        player.GetComponent<Player>().rightBorder = rightBorder;
+        player.GetComponent<Player>().bottomBorder = bottomBorder;
     }
 
     private void CheckIfWin()
@@ -161,6 +169,7 @@ public class Player : MonoBehaviour
         {
             GameManager.win = true;
             GameManager.playGame = false;
+            GameManager.endOfGame = true;
         }
         else
         {
