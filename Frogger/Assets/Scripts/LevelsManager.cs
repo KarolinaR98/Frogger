@@ -21,13 +21,13 @@ public class LevelsManager : MonoBehaviour
     IEnumerator LoadNextLevel()
     {
         yield return new WaitForSeconds(3f);
-        if (activeSceneIndex < 2)
+        if (activeSceneIndex == 2)
         {
-            SceneManager.LoadScene(activeSceneIndex);
+            SceneManager.LoadScene(0);
         }
         else
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(activeSceneIndex + 1);
         }
         ResetGameManager();
     }

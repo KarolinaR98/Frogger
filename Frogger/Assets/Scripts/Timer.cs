@@ -26,9 +26,8 @@ public class Timer : MonoBehaviour
 
         if (currentTime < 0)
         {
-            GameManager.win = false;
-            GameManager.playGame = false;
-            GameManager.endOfGame = true;
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            player.BroadcastMessage("CheckIfEndOfGame", SendMessageOptions.DontRequireReceiver);
         }
 
         if (GameManager.endOfGame)
@@ -42,6 +41,11 @@ public class Timer : MonoBehaviour
     public int TimeStamp()
     {
         return (int)currentTime;
+    }
+
+    public void ResetTimer()
+    {
+        currentTime = timeToCalc + 1;
     }
 
 

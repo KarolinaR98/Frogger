@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     private float raycastDistance = 5;
     private bool isDone = false;
 
-    private int numOfLives;
+    public int numOfLives;
     private Vector3 setPlayer;
     [SerializeField] GameObject playerPrefab;
     private GameObject canvas;
@@ -140,6 +140,7 @@ public class Player : MonoBehaviour
         else
         {
             gameObject.transform.position = setPlayer;
+            canvas.GetComponent<Timer>().ResetTimer();
         }
     }
 
@@ -157,6 +158,7 @@ public class Player : MonoBehaviour
         player.GetComponent<Player>().leftBorder = leftBorder;
         player.GetComponent<Player>().rightBorder = rightBorder;
         player.GetComponent<Player>().bottomBorder = bottomBorder;
+        player.GetComponent<Player>().numOfLives = numOfLives;
     }
 
     private void CheckIfWin()
@@ -175,6 +177,7 @@ public class Player : MonoBehaviour
         {
             SpawnNewPlayer();
             Destroy(GetComponent<Player>());
+            canvas.GetComponent<Timer>().ResetTimer();
         }
     }
   

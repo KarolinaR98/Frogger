@@ -35,6 +35,7 @@ public class KonamiCode : MonoBehaviour
                 {
                     GameManager.playGame = false;
                     GameManager.win = true;
+                    GameManager.endOfGame = true;
                     timer = 0f;
                     index = 0;
                 }
