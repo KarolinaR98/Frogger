@@ -39,5 +39,6 @@ public class LevelsManager : MonoBehaviour
         GameManager.win = false;
         GameManager.points = 0;
         GameManager.frogOnGrass = 0;
+        GameManager.numOfLives = 0;
     }
 }

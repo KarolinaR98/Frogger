@@ -18,7 +18,6 @@ public class Player : MonoBehaviour
     private float raycastDistance = 5;
     private bool isDone = false;
 
-    public int numOfLives;
     private Vector3 setPlayer;
     [SerializeField] GameObject playerPrefab;
     private GameObject canvas;
@@ -129,9 +128,9 @@ public class Player : MonoBehaviour
     private void CheckIfEndOfGame()
     {
         ResetBorders();
-        numOfLives--;
+        GameManager.numOfLives--;
         canvas.BroadcastMessage("DeleteLifePoint", SendMessageOptions.DontRequireReceiver);
-        if(numOfLives <= -3)
+        if(GameManager.numOfLives <= -3)
         {
             GameManager.playGame = false;
             GameManager.endOfGame = true;
@@ -158,7 +157,6 @@ public class Player : MonoBehaviour
         player.GetComponent<Player>().leftBorder = leftBorder;
         player.GetComponent<Player>().rightBorder = rightBorder;
         player.GetComponent<Player>().bottomBorder = bottomBorder;
-        player.GetComponent<Player>().numOfLives = numOfLives;
     }
 
     private void CheckIfWin()
